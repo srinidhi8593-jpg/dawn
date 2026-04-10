@@ -113,6 +113,34 @@
         <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
       </div>
       <div class="field">
+        <input
+          type="text"
+          id="ContactForm-address"
+          class="field__input"
+          autocomplete="address-line1"
+          name="contact[Address]"
+          placeholder="Address"
+        >
+        <label class="field__label" for="ContactForm-address">Address</label>
+      </div>
+      <div>
+        <label class="form__label visually-hidden" for="ContactForm-country">Country</label>
+        <div class="select">
+          <select
+            id="ContactForm-country"
+            name="contact[Country]"
+            autocomplete="country"
+            class="select__select"
+          >
+            <option value="" disabled selected>Select country</option>
+            {{ all_country_option_tags }}
+          </select>
+          <span class="svg-wrapper">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span>
+        </div>
+      </div>
+      <div class="field">
         <textarea
           rows="10"
           id="ContactForm-body"
