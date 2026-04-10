@@ -1,0 +1,35 @@
+{{ 'homepage-hero.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-hero" id="homepage-hero">
+  <div class="homepage-hero__content">
+    <div class="homepage-hero__text">
+      <p class="homepage-hero__subtitle">GOING THE EXTRA DISTANCE</p>
+      <h1 class="homepage-hero__heading">Verified Quality<br>and Value</h1>
+      <p class="homepage-hero__desc">Save money with our refurbished electronics while getting top-quality devices you can trust.</p>
+      <a href="/collections/all" class="homepage-hero__btn" id="hero-shop-now">
+        Shop Now
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="homepage-hero__image">
+      <img src="{{ 'hero-devices.png' | asset_url }}" alt="Refurbished laptops, tablets, phones and monitors" loading="eager" width="520" height="400">
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Hero",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Homepage Hero"
+    }
+  ]
+}
+{% endschema %}
