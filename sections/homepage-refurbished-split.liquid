@@ -1,0 +1,65 @@
+{{ 'homepage-refurbished-split.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-refurbished" id="homepage-refurbished">
+  <div class="homepage-refurbished__inner">
+    <!-- Left Panel -->
+    <div class="homepage-refurbished__left">
+      <p class="homepage-refurbished__label">Browse by condition</p>
+      <div class="homepage-refurbished__tabs">
+        <button class="homepage-refurbished__tab active" id="tab-refurbished" onclick="this.classList.add('active');document.getElementById('tab-new').classList.remove('active');">Refurbished</button>
+        <button class="homepage-refurbished__tab" id="tab-new" onclick="this.classList.add('active');document.getElementById('tab-refurbished').classList.remove('active');">New</button>
+      </div>
+
+      <div class="homepage-refurbished__products">
+        <div class="homepage-refurbished__product-thumb">
+          <img src="{{ 'product-monitor-1.png' | asset_url }}" alt="Monitor" loading="lazy" width="74" height="74">
+        </div>
+        <div class="homepage-refurbished__product-thumb">
+          <img src="{{ 'product-laptop-1.png' | asset_url }}" alt="Laptop" loading="lazy" width="74" height="74">
+        </div>
+        <div class="homepage-refurbished__product-thumb">
+          <img src="{{ 'product-tablet-1.png' | asset_url }}" alt="Tablet" loading="lazy" width="74" height="74">
+        </div>
+      </div>
+
+      <div class="homepage-refurbished__categories">
+        <a href="/collections/all" class="homepage-refurbished__category-tag">Laptops</a>
+        <a href="/collections/all" class="homepage-refurbished__category-tag">Desktops</a>
+        <a href="/collections/all" class="homepage-refurbished__category-tag">Monitors</a>
+        <a href="/collections/all" class="homepage-refurbished__category-tag">Tablets</a>
+        <a href="/collections/all" class="homepage-refurbished__category-tag">Accessories</a>
+      </div>
+
+      <a href="/collections/all" class="homepage-refurbished__cta-btn" id="shop-collection-btn">
+        Shop Collection
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="homepage-refurbished__right">
+      <img class="homepage-refurbished__right-image" src="{{ 'refurbished-device.png' | asset_url }}" alt="Upgrade without compromise" loading="lazy" width="700" height="400">
+      <div class="homepage-refurbished__right-overlay">
+        <h2 class="homepage-refurbished__right-heading">Upgrade Without<br>Compromise</h2>
+        <p class="homepage-refurbished__right-desc">Discover our carefully refurbished electronics that meet the highest standards. Every device is thoroughly tested, certified, and backed by our quality guarantee.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Refurbished Split",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Refurbished Split"
+    }
+  ]
+}
+{% endschema %}
