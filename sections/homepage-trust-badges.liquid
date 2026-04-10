@@ -1,0 +1,61 @@
+{{ 'homepage-trust-badges.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-trust" id="homepage-trust">
+  <div class="homepage-trust__inner">
+    <div class="homepage-trust__header">
+      <h2 class="homepage-trust__heading">Certified. Trusted. Compliant.</h2>
+      <p class="homepage-trust__desc">We adhere to the highest industry standards in refurbishment. Every device passes rigorous quality checks, data sanitization protocols, and functionality testing before reaching you.</p>
+    </div>
+
+    <div class="homepage-trust__cards-wrapper">
+      <div class="homepage-trust__cards">
+        <!-- Laptops -->
+        <a href="/collections/all" class="homepage-trust__card" id="trust-laptops">
+          <div class="homepage-trust__card-image">
+            <img src="{{ 'product-laptop-1.png' | asset_url }}" alt="Refurbished Laptops" loading="lazy" width="400" height="250">
+          </div>
+          <div class="homepage-trust__card-body">
+            <h3 class="homepage-trust__card-title">Laptops</h3>
+          </div>
+        </a>
+
+        <!-- Smartphones -->
+        <a href="/collections/all" class="homepage-trust__card" id="trust-smartphones">
+          <div class="homepage-trust__card-image">
+            <img src="{{ 'category-smartphones.png' | asset_url }}" alt="Refurbished Smartphones" loading="lazy" width="400" height="250">
+          </div>
+          <div class="homepage-trust__card-body">
+            <h3 class="homepage-trust__card-title">Smartphones</h3>
+          </div>
+        </a>
+
+        <!-- Accessories -->
+        <a href="/collections/all" class="homepage-trust__card" id="trust-accessories">
+          <div class="homepage-trust__card-image">
+            <img src="{{ 'category-accessories.png' | asset_url }}" alt="Computer Accessories" loading="lazy" width="400" height="250">
+          </div>
+          <div class="homepage-trust__card-body">
+            <h3 class="homepage-trust__card-title">Accessories</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Badges",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Trust Badges"
+    }
+  ]
+}
+{% endschema %}
