@@ -1,0 +1,80 @@
+{{ 'homepage-top-deals.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-top-deals" id="homepage-top-deals">
+  <div class="homepage-top-deals__inner">
+    <h2 class="homepage-top-deals__title">Top Deals</h2>
+
+    <div class="homepage-top-deals__grid">
+      <!-- Promo Card -->
+      <div class="homepage-top-deals__promo-card">
+        <h3 class="homepage-top-deals__promo-heading">Get ready for<br>a deal you<br>can't miss</h3>
+        <a href="/collections/all" class="homepage-top-deals__promo-btn" id="deals-shop-now">
+          Shop Now
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Deal Card 1 -->
+      <a href="/collections/all" class="homepage-top-deals__deal-card" id="deal-1">
+        <div class="homepage-top-deals__deal-image">
+          <span class="homepage-top-deals__deal-badge">-45%</span>
+          <img src="{{ 'product-laptop-2.png' | asset_url }}" alt="Apple MacBook Air M1" loading="lazy" width="280" height="210">
+        </div>
+        <div class="homepage-top-deals__deal-body">
+          <h3 class="homepage-top-deals__deal-title">Apple MacBook Air 13.3" M1 Chip 8GB RAM 256GB SSD</h3>
+          <div class="homepage-top-deals__deal-prices">
+            <span class="homepage-top-deals__deal-price">$549.00</span>
+            <span class="homepage-top-deals__deal-price-old">$999.00</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Deal Card 2 -->
+      <a href="/collections/all" class="homepage-top-deals__deal-card" id="deal-2">
+        <div class="homepage-top-deals__deal-image">
+          <span class="homepage-top-deals__deal-badge">-38%</span>
+          <img src="{{ 'product-monitor-1.png' | asset_url }}" alt="HP Z27 4K UHD Display" loading="lazy" width="280" height="210">
+        </div>
+        <div class="homepage-top-deals__deal-body">
+          <h3 class="homepage-top-deals__deal-title">HP Z27 27" 4K UHD IPS Display with USB-C Hub</h3>
+          <div class="homepage-top-deals__deal-prices">
+            <span class="homepage-top-deals__deal-price">$389.00</span>
+            <span class="homepage-top-deals__deal-price-old">$629.00</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Deal Card 3 -->
+      <a href="/collections/all" class="homepage-top-deals__deal-card" id="deal-3">
+        <div class="homepage-top-deals__deal-image">
+          <span class="homepage-top-deals__deal-badge">-52%</span>
+          <img src="{{ 'product-laptop-1.png' | asset_url }}" alt="Dell XPS 13 Laptop" loading="lazy" width="280" height="210">
+        </div>
+        <div class="homepage-top-deals__deal-body">
+          <h3 class="homepage-top-deals__deal-title">Dell XPS 13 9310 13.4" FHD+ Intel Core i7-1185G7</h3>
+          <div class="homepage-top-deals__deal-prices">
+            <span class="homepage-top-deals__deal-price">$479.00</span>
+            <span class="homepage-top-deals__deal-price-old">$999.99</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Top Deals",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Homepage Top Deals"
+    }
+  ]
+}
+{% endschema %}
