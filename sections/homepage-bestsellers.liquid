@@ -1,0 +1,126 @@
+{{ 'homepage-bestsellers.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-bestsellers" id="homepage-bestsellers">
+  <div class="homepage-bestsellers__inner">
+    <div class="homepage-bestsellers__header">
+      <h2 class="homepage-bestsellers__title">Bestsellers</h2>
+      <div class="homepage-bestsellers__nav">
+        <button class="homepage-bestsellers__nav-btn" id="bestsellers-prev" aria-label="Previous" onclick="document.getElementById('bestsellers-scroll').scrollBy({left:-300, behavior:'smooth'})">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="homepage-bestsellers__nav-btn" id="bestsellers-next" aria-label="Next" onclick="document.getElementById('bestsellers-scroll').scrollBy({left:300, behavior:'smooth'})">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="homepage-bestsellers__grid" id="bestsellers-scroll">
+      <!-- Card 1 -->
+      <a href="/collections/all" class="homepage-bestsellers__card" id="bestseller-1">
+        <div class="homepage-bestsellers__card-image">
+          <span class="homepage-bestsellers__card-badge homepage-bestsellers__card-badge--green">Certified refurbished</span>
+          <img src="{{ 'product-laptop-1.png' | asset_url }}" alt="Dell Latitude 5420 Laptop" loading="lazy" width="200" height="200">
+        </div>
+        <div class="homepage-bestsellers__card-body">
+          <h3 class="homepage-bestsellers__card-title">Dell Latitude 5420 14" FHD Laptop Intel Core i5-1145G7</h3>
+          <div class="homepage-bestsellers__card-price">
+            $349.99
+            <span class="homepage-bestsellers__card-price-original">$899.00</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="/collections/all" class="homepage-bestsellers__card" id="bestseller-2">
+        <div class="homepage-bestsellers__card-image">
+          <span class="homepage-bestsellers__card-badge homepage-bestsellers__card-badge--green">Certified refurbished</span>
+          <img src="{{ 'product-tablet-1.png' | asset_url }}" alt="iPad Air 4th Gen" loading="lazy" width="200" height="200">
+        </div>
+        <div class="homepage-bestsellers__card-body">
+          <h3 class="homepage-bestsellers__card-title">Apple iPad Air 4th Gen 10.9" 64GB Wi-Fi</h3>
+          <div class="homepage-bestsellers__card-price">
+            $299.99
+            <span class="homepage-bestsellers__card-price-original">$599.00</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="/collections/all" class="homepage-bestsellers__card" id="bestseller-3">
+        <div class="homepage-bestsellers__card-image">
+          <span class="homepage-bestsellers__card-badge homepage-bestsellers__card-badge--blue">Like new</span>
+          <img src="{{ 'product-monitor-1.png' | asset_url }}" alt="Dell UltraSharp Monitor" loading="lazy" width="200" height="200">
+        </div>
+        <div class="homepage-bestsellers__card-body">
+          <h3 class="homepage-bestsellers__card-title">Dell UltraSharp U2722D 27" QHD USB-C Monitor</h3>
+          <div class="homepage-bestsellers__card-price">
+            $249.99
+            <span class="homepage-bestsellers__card-price-original">$519.99</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="/collections/all" class="homepage-bestsellers__card" id="bestseller-4">
+        <div class="homepage-bestsellers__card-image">
+          <span class="homepage-bestsellers__card-badge homepage-bestsellers__card-badge--green">Certified refurbished</span>
+          <img src="{{ 'product-laptop-2.png' | asset_url }}" alt="HP EliteBook 840 G8" loading="lazy" width="200" height="200">
+        </div>
+        <div class="homepage-bestsellers__card-body">
+          <h3 class="homepage-bestsellers__card-title">HP EliteBook 840 G8 14" FHD Intel Core i7-1185G7</h3>
+          <div class="homepage-bestsellers__card-price">
+            $429.99
+            <span class="homepage-bestsellers__card-price-original">$1,249.00</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 5 -->
+      <a href="/collections/all" class="homepage-bestsellers__card" id="bestseller-5">
+        <div class="homepage-bestsellers__card-image">
+          <span class="homepage-bestsellers__card-badge homepage-bestsellers__card-badge--green">Certified refurbished</span>
+          <img src="{{ 'product-laptop-1.png' | asset_url }}" alt="Lenovo ThinkPad X1 Carbon" loading="lazy" width="200" height="200">
+        </div>
+        <div class="homepage-bestsellers__card-body">
+          <h3 class="homepage-bestsellers__card-title">Lenovo ThinkPad X1 Carbon Gen 9 14" FHD</h3>
+          <div class="homepage-bestsellers__card-price">
+            $549.99
+            <span class="homepage-bestsellers__card-price-original">$1,499.00</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 6 -->
+      <a href="/collections/all" class="homepage-bestsellers__card" id="bestseller-6">
+        <div class="homepage-bestsellers__card-image">
+          <span class="homepage-bestsellers__card-badge homepage-bestsellers__card-badge--blue">Like new</span>
+          <img src="{{ 'product-tablet-1.png' | asset_url }}" alt="Samsung Galaxy Tab S8" loading="lazy" width="200" height="200">
+        </div>
+        <div class="homepage-bestsellers__card-body">
+          <h3 class="homepage-bestsellers__card-title">Samsung Galaxy Tab S8 11" 128GB Wi-Fi</h3>
+          <div class="homepage-bestsellers__card-price">
+            $379.99
+            <span class="homepage-bestsellers__card-price-original">$699.99</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Bestsellers",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Homepage Bestsellers"
+    }
+  ]
+}
+{% endschema %}
