@@ -1,0 +1,33 @@
+{{ 'homepage-support.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-support" id="homepage-support">
+  <div class="homepage-support__inner">
+    <p class="homepage-support__subtitle">powered by industry-best certifications</p>
+    <div class="homepage-support__icon">
+      <img src="{{ 'support-icon.png' | asset_url }}" alt="Certified support badge" loading="lazy" width="80" height="80">
+    </div>
+    <h2 class="homepage-support__heading">Comprehensive Support,<br>Optimized Outcomes</h2>
+    <p class="homepage-support__desc">Our team of certified experts provides end-to-end support, from selecting the right device to ongoing technical assistance. We're committed to delivering optimized outcomes for every customer.</p>
+    <a href="/pages/about" class="homepage-support__btn" id="support-learn-more">
+      Learn More
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Support",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Homepage Support"
+    }
+  ]
+}
+{% endschema %}
