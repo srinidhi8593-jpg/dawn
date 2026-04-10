@@ -1,0 +1,36 @@
+{{ 'homepage-brand-marquee.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-marquee" id="homepage-marquee">
+  <div class="homepage-marquee__inner">
+    <p class="homepage-marquee__subtitle">What Others Have to Say About Us</p>
+
+    <div class="homepage-marquee__text-static">
+      "<em>Phenomenal</em>, Competent, <em>Dynamic</em>,
+      Friendly, Trustworthy, Clever, Helpful, <em>Knowledgeable</em>, Marvelous,
+      Outstanding, Praiseworthy, Remarkable, <em>Super</em>, Terrific &amp;
+      <em>Wonderful!</em>"
+    </div>
+
+    <a href="/pages/about" class="homepage-marquee__btn" id="marquee-learn-more">
+      Learn More
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Marquee",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Brand Marquee"
+    }
+  ]
+}
+{% endschema %}
