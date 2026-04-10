@@ -1,0 +1,117 @@
+.homepage-trust {
+  padding: 56px 0 0;
+  background: #ffffff;
+}
+
+.homepage-trust__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.homepage-trust__header {
+  margin-bottom: 16px;
+}
+
+.homepage-trust__heading {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0 0 12px 0;
+}
+
+.homepage-trust__desc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.7;
+  max-width: 700px;
+}
+
+.homepage-trust__cards-wrapper {
+  margin-top: 32px;
+  position: relative;
+  background: linear-gradient(135deg, #2d3da8 0%, #1e88a8 30%, #0d9b5a 60%, #1e88a8 100%);
+  border-radius: 18px;
+  padding: 40px 32px;
+  overflow: hidden;
+}
+
+.homepage-trust__cards-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.homepage-trust__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.homepage-trust__card {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.homepage-trust__card:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+.homepage-trust__card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.homepage-trust__card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.homepage-trust__card:hover .homepage-trust__card-image img {
+  transform: scale(1.05);
+}
+
+.homepage-trust__card-body {
+  padding: 16px 20px 20px;
+}
+
+.homepage-trust__card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+@media screen and (max-width: 990px) {
+  .homepage-trust__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .homepage-trust__inner {
+    padding: 0 20px;
+  }
+
+  .homepage-trust__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .homepage-trust__heading {
+    font-size: 20px;
+  }
+}
