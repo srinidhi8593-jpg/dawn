@@ -1,60 +1,91 @@
 {{ 'homepage-trust-badges.css' | asset_url | stylesheet_tag }}
 
-<section class="homepage-trust" id="homepage-trust">
+<section class="homepage-trust" id="homepage-certificates">
   <div class="homepage-trust__inner">
     <div class="homepage-trust__header">
-      <h2 class="homepage-trust__heading">Certified. Trusted. Compliant.</h2>
-      <p class="homepage-trust__desc">We adhere to the highest industry standards in refurbishment. Every device passes rigorous quality checks, data sanitization protocols, and functionality testing before reaching you.</p>
+      {%- if section.settings.heading != blank -%}
+        <h2 class="homepage-trust__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <p class="homepage-trust__desc">{{ section.settings.description }}</p>
+      {%- endif -%}
     </div>
 
-    <div class="homepage-trust__cards-wrapper">
-      <div class="homepage-trust__cards">
-        <!-- Laptops -->
-        <a href="/collections/all" class="homepage-trust__card" id="trust-laptops">
-          <div class="homepage-trust__card-image">
-            <img src="{{ 'product-laptop-1.png' | asset_url }}" alt="Refurbished Laptops" loading="lazy" width="400" height="250">
-          </div>
-          <div class="homepage-trust__card-body">
-            <h3 class="homepage-trust__card-title">Laptops</h3>
-          </div>
-        </a>
-
-        <!-- Smartphones -->
-        <a href="/collections/all" class="homepage-trust__card" id="trust-smartphones">
-          <div class="homepage-trust__card-image">
-            <img src="{{ 'category-smartphones.png' | asset_url }}" alt="Refurbished Smartphones" loading="lazy" width="400" height="250">
-          </div>
-          <div class="homepage-trust__card-body">
-            <h3 class="homepage-trust__card-title">Smartphones</h3>
-          </div>
-        </a>
-
-        <!-- Accessories -->
-        <a href="/collections/all" class="homepage-trust__card" id="trust-accessories">
-          <div class="homepage-trust__card-image">
-            <img src="{{ 'category-accessories.png' | asset_url }}" alt="Computer Accessories" loading="lazy" width="400" height="250">
-          </div>
-          <div class="homepage-trust__card-body">
-            <h3 class="homepage-trust__card-title">Accessories</h3>
-          </div>
-        </a>
-      </div>
+    <div class="homepage-trust__icons-grid">
+      {%- for block in section.blocks -%}
+        <div class="homepage-trust__icon-item" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != blank -%}
+            <div class="homepage-trust__icon-wrap">
+              <img src="{{ block.settings.icon | image_url: width: 200 }}" alt="{{ block.settings.label | escape }}" loading="lazy" width="80" height="80">
+            </div>
+          {%- else -%}
+            <div class="homepage-trust__icon-wrap homepage-trust__icon-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+          {%- endif -%}
+          {%- if block.settings.label != blank -%}
+            <span class="homepage-trust__icon-label">{{ block.settings.label }}</span>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
     </div>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Trust Badges",
+  "name": "Certificates & Membership",
   "tag": "section",
   "class": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
   },
-  "settings": [],
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Certified. Trusted. Compliant."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "We adhere to the highest industry standards in refurbishment. Every device passes rigorous quality checks, data sanitization protocols, and functionality testing."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "certificate",
+      "name": "Certificate / Membership",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Certificate Icon"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Certification"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Trust Badges"
+      "name": "Certificates & Membership",
+      "blocks": [
+        { "type": "certificate", "settings": { "label": "ISO 9001" } },
+        { "type": "certificate", "settings": { "label": "R2 Certified" } },
+        { "type": "certificate", "settings": { "label": "Microsoft Authorized" } },
+        { "type": "certificate", "settings": { "label": "e-Stewards" } },
+        { "type": "certificate", "settings": { "label": "NAID AAA" } }
+      ]
     }
   ]
 }
