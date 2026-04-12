@@ -1,125 +1,125 @@
 {{ 'homepage-bestsellers.css' | asset_url | stylesheet_tag }}
 
+{%- assign bestsellers_collection = section.settings.collection -%}
+
 <section class="homepage-bestsellers" id="homepage-bestsellers">
   <div class="homepage-bestsellers__inner">
     <div class="homepage-bestsellers__header">
-      <h2 class="homepage-bestsellers__title">Bestsellers</h2>
-      <div class="homepage-bestsellers__nav">
-        <button class="homepage-bestsellers__nav-btn" id="bestsellers-prev" aria-label="Previous" onclick="document.getElementById('bestsellers-scroll').scrollBy({left:-300, behavior:'smooth'})">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button class="homepage-bestsellers__nav-btn" id="bestsellers-next" aria-label="Next" onclick="document.getElementById('bestsellers-scroll').scrollBy({left:300, behavior:'smooth'})">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
+      <h2 class="homepage-bestsellers__title">{{ section.settings.heading | default: 'Bestsellers' }}</h2>
+      <div class="homepage-bestsellers__header-right">
+        {%- if section.settings.show_view_all and bestsellers_collection != blank -%}
+          <a href="{{ bestsellers_collection.url }}" class="homepage-bestsellers__view-all" id="bestsellers-shop-now">
+            {{ section.settings.button_label | default: 'Shop Now' }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        {%- endif -%}
+        <div class="homepage-bestsellers__nav">
+          <button class="homepage-bestsellers__nav-btn" id="bestsellers-prev" aria-label="Previous" onclick="document.getElementById('bestsellers-scroll').scrollBy({left:-300, behavior:'smooth'})">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="homepage-bestsellers__nav-btn" id="bestsellers-next" aria-label="Next" onclick="document.getElementById('bestsellers-scroll').scrollBy({left:300, behavior:'smooth'})">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
       </div>
     </div>
 
     <div class="homepage-bestsellers__grid" id="bestsellers-scroll">
-      <!-- Card 1 -->
-      <a href="/collections/all" class="homepage-bestsellers__card" id="bestseller-1">
-        <div class="homepage-bestsellers__card-image">
-          <span class="homepage-bestsellers__card-badge homepage-bestsellers__card-badge--green">Certified refurbished</span>
-          <img src="{{ 'product-laptop-1.png' | asset_url }}" alt="Dell Latitude 5420 Laptop" loading="lazy" width="200" height="200">
-        </div>
-        <div class="homepage-bestsellers__card-body">
-          <h3 class="homepage-bestsellers__card-title">Dell Latitude 5420 14" FHD Laptop Intel Core i5-1145G7</h3>
-          <div class="homepage-bestsellers__card-price">
-            $349.99
-            <span class="homepage-bestsellers__card-price-original">$899.00</span>
+      {%- if bestsellers_collection != blank -%}
+        {%- for product in bestsellers_collection.products limit: section.settings.products_to_show -%}
+          <a href="{{ product.url }}" class="homepage-bestsellers__card" id="bestseller-{{ forloop.index }}">
+            <div class="homepage-bestsellers__card-image">
+              {%- assign tag_count = 0 -%}
+              {%- for tag in product.tags limit: 2 -%}
+                {%- assign tag_lower = tag | downcase -%}
+                {%- if tag_lower == 'new' or tag_lower == 'sale' or tag_lower == 'certified refurbished' or tag_lower == 'like new' or tag_lower == 'refurbished' -%}
+                  <span class="homepage-bestsellers__card-badge {% if tag_lower == 'sale' %}homepage-bestsellers__card-badge--red{% elsif tag_lower == 'new' or tag_lower == 'like new' %}homepage-bestsellers__card-badge--blue{% else %}homepage-bestsellers__card-badge--green{% endif %}">{{ tag }}</span>
+                  {%- assign tag_count = tag_count | plus: 1 -%}
+                {%- endif -%}
+                {%- if tag_count >= 2 -%}{%- break -%}{%- endif -%}
+              {%- endfor -%}
+              {%- if product.featured_image != blank -%}
+                <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title | escape }}" loading="lazy" width="200" height="200">
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            <div class="homepage-bestsellers__card-body">
+              {%- if product.type != blank -%}
+                <span class="homepage-bestsellers__card-category">{{ product.type }}</span>
+              {%- endif -%}
+              <h3 class="homepage-bestsellers__card-title">{{ product.title }}</h3>
+              <div class="homepage-bestsellers__card-price">
+                {{ product.price | money }}
+                {%- if product.compare_at_price > product.price -%}
+                  <span class="homepage-bestsellers__card-price-original">{{ product.compare_at_price | money }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          </a>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..6) -%}
+          <div class="homepage-bestsellers__card">
+            <div class="homepage-bestsellers__card-image">
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+            <div class="homepage-bestsellers__card-body">
+              <h3 class="homepage-bestsellers__card-title">Select a collection in section settings</h3>
+              <div class="homepage-bestsellers__card-price">$0.00</div>
+            </div>
           </div>
-        </div>
-      </a>
-
-      <!-- Card 2 -->
-      <a href="/collections/all" class="homepage-bestsellers__card" id="bestseller-2">
-        <div class="homepage-bestsellers__card-image">
-          <span class="homepage-bestsellers__card-badge homepage-bestsellers__card-badge--green">Certified refurbished</span>
-          <img src="{{ 'product-tablet-1.png' | asset_url }}" alt="iPad Air 4th Gen" loading="lazy" width="200" height="200">
-        </div>
-        <div class="homepage-bestsellers__card-body">
-          <h3 class="homepage-bestsellers__card-title">Apple iPad Air 4th Gen 10.9" 64GB Wi-Fi</h3>
-          <div class="homepage-bestsellers__card-price">
-            $299.99
-            <span class="homepage-bestsellers__card-price-original">$599.00</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Card 3 -->
-      <a href="/collections/all" class="homepage-bestsellers__card" id="bestseller-3">
-        <div class="homepage-bestsellers__card-image">
-          <span class="homepage-bestsellers__card-badge homepage-bestsellers__card-badge--blue">Like new</span>
-          <img src="{{ 'product-monitor-1.png' | asset_url }}" alt="Dell UltraSharp Monitor" loading="lazy" width="200" height="200">
-        </div>
-        <div class="homepage-bestsellers__card-body">
-          <h3 class="homepage-bestsellers__card-title">Dell UltraSharp U2722D 27" QHD USB-C Monitor</h3>
-          <div class="homepage-bestsellers__card-price">
-            $249.99
-            <span class="homepage-bestsellers__card-price-original">$519.99</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Card 4 -->
-      <a href="/collections/all" class="homepage-bestsellers__card" id="bestseller-4">
-        <div class="homepage-bestsellers__card-image">
-          <span class="homepage-bestsellers__card-badge homepage-bestsellers__card-badge--green">Certified refurbished</span>
-          <img src="{{ 'product-laptop-2.png' | asset_url }}" alt="HP EliteBook 840 G8" loading="lazy" width="200" height="200">
-        </div>
-        <div class="homepage-bestsellers__card-body">
-          <h3 class="homepage-bestsellers__card-title">HP EliteBook 840 G8 14" FHD Intel Core i7-1185G7</h3>
-          <div class="homepage-bestsellers__card-price">
-            $429.99
-            <span class="homepage-bestsellers__card-price-original">$1,249.00</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Card 5 -->
-      <a href="/collections/all" class="homepage-bestsellers__card" id="bestseller-5">
-        <div class="homepage-bestsellers__card-image">
-          <span class="homepage-bestsellers__card-badge homepage-bestsellers__card-badge--green">Certified refurbished</span>
-          <img src="{{ 'product-laptop-1.png' | asset_url }}" alt="Lenovo ThinkPad X1 Carbon" loading="lazy" width="200" height="200">
-        </div>
-        <div class="homepage-bestsellers__card-body">
-          <h3 class="homepage-bestsellers__card-title">Lenovo ThinkPad X1 Carbon Gen 9 14" FHD</h3>
-          <div class="homepage-bestsellers__card-price">
-            $549.99
-            <span class="homepage-bestsellers__card-price-original">$1,499.00</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Card 6 -->
-      <a href="/collections/all" class="homepage-bestsellers__card" id="bestseller-6">
-        <div class="homepage-bestsellers__card-image">
-          <span class="homepage-bestsellers__card-badge homepage-bestsellers__card-badge--blue">Like new</span>
-          <img src="{{ 'product-tablet-1.png' | asset_url }}" alt="Samsung Galaxy Tab S8" loading="lazy" width="200" height="200">
-        </div>
-        <div class="homepage-bestsellers__card-body">
-          <h3 class="homepage-bestsellers__card-title">Samsung Galaxy Tab S8 11" 128GB Wi-Fi</h3>
-          <div class="homepage-bestsellers__card-price">
-            $379.99
-            <span class="homepage-bestsellers__card-price-original">$699.99</span>
-          </div>
-        </div>
-      </a>
+        {%- endfor -%}
+      {%- endif -%}
     </div>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Homepage Bestsellers",
+  "name": "Bestsellers Carousel",
   "tag": "section",
   "class": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
   },
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 8,
+      "label": "Products to show"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'Shop Now' button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    }
+  ],
   "presets": [
     {
-      "name": "Homepage Bestsellers"
+      "name": "Bestsellers Carousel"
     }
   ]
 }
