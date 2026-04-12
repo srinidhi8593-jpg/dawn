@@ -14,6 +14,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 28px;
+  gap: 16px;
 }
 
 .homepage-bestsellers__title {
@@ -21,6 +22,32 @@
   font-weight: 700;
   color: #1a1a2e;
   margin: 0;
+}
+
+.homepage-bestsellers__header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.homepage-bestsellers__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0d6e3a;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: 1.5px solid #0d6e3a;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.homepage-bestsellers__view-all:hover {
+  background: #0d6e3a;
+  color: #fff;
 }
 
 .homepage-bestsellers__nav {
@@ -117,6 +144,7 @@
   padding: 4px 10px;
   border-radius: 20px;
   letter-spacing: 0.3px;
+  z-index: 2;
 }
 
 .homepage-bestsellers__card-badge--green {
@@ -129,8 +157,23 @@
   color: #1a56db;
 }
 
+.homepage-bestsellers__card-badge--red {
+  background: #ffe6e6;
+  color: #d32f2f;
+}
+
 .homepage-bestsellers__card-body {
   padding: 14px 16px 18px;
+}
+
+.homepage-bestsellers__card-category {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
 }
 
 .homepage-bestsellers__card-title {
@@ -174,5 +217,14 @@
   .homepage-bestsellers__card {
     flex: 0 0 calc(50% - 10px);
     min-width: 150px;
+  }
+
+  .homepage-bestsellers__header {
+    flex-wrap: wrap;
+  }
+
+  .homepage-bestsellers__view-all {
+    font-size: 12px;
+    padding: 6px 14px;
   }
 }
