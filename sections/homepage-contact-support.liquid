@@ -1,0 +1,126 @@
+{{ 'homepage-contact-support.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-contact" id="homepage-contact-support">
+  <div class="homepage-contact__inner">
+    <div class="homepage-contact__header">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="homepage-contact__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="homepage-contact__subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="homepage-contact__grid">
+      <!-- Customer Service Timing -->
+      <div class="homepage-contact__card">
+        <div class="homepage-contact__card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <p class="homepage-contact__card-label">Customer Service</p>
+        <p class="homepage-contact__card-value">{{ section.settings.service_timing | default: 'Mon-Fri: 8AM - 6PM EST' }}</p>
+      </div>
+
+      <!-- Contact Number -->
+      <div class="homepage-contact__card">
+        <div class="homepage-contact__card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <p class="homepage-contact__card-label">Phone</p>
+        <p class="homepage-contact__card-value">
+          {%- if section.settings.phone != blank -%}
+            <a href="tel:{{ section.settings.phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' }}">{{ section.settings.phone }}</a>
+          {%- else -%}
+            (800) 555-0199
+          {%- endif -%}
+        </p>
+      </div>
+
+      <!-- Email -->
+      <div class="homepage-contact__card">
+        <div class="homepage-contact__card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </div>
+        <p class="homepage-contact__card-label">Email</p>
+        <p class="homepage-contact__card-value">
+          {%- if section.settings.email != blank -%}
+            <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+          {%- else -%}
+            support@example.com
+          {%- endif -%}
+        </p>
+      </div>
+
+      <!-- Address -->
+      <div class="homepage-contact__card">
+        <div class="homepage-contact__card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <p class="homepage-contact__card-label">Address</p>
+        <p class="homepage-contact__card-value">{{ section.settings.address | default: '123 Business Ave, Suite 100, City, ST 12345' }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Support",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get in Touch"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "We're here to help with any questions or concerns"
+    },
+    {
+      "type": "text",
+      "id": "service_timing",
+      "label": "Customer Service Timing",
+      "default": "Mon-Fri: 8AM - 6PM EST"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Contact Number",
+      "default": "(800) 555-0199"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email Address",
+      "default": "support@example.com"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Address",
+      "default": "123 Business Ave, Suite 100, City, ST 12345"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Support"
+    }
+  ]
+}
+{% endschema %}
