@@ -1,0 +1,113 @@
+.homepage-featured-categories {
+  padding: 48px 0;
+  background: #f9fafb;
+}
+
+.homepage-featured-categories__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.homepage-featured-categories__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.homepage-featured-categories__card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: #1a1a2e;
+}
+
+.homepage-featured-categories__card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.homepage-featured-categories__card:hover .homepage-featured-categories__card-bg {
+  transform: scale(1.05);
+  opacity: 0.5;
+}
+
+.homepage-featured-categories__card-content {
+  position: relative;
+  z-index: 2;
+  padding: 28px 28px 24px;
+  background: linear-gradient(transparent 0%, rgba(0,0,0,0.6) 100%);
+}
+
+.homepage-featured-categories__card-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+}
+
+.homepage-featured-categories__card-subtitle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.homepage-featured-categories__card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  color: #1a1a2e;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.homepage-featured-categories__card-btn:hover {
+  background: #f0f7f3;
+  color: #0d6e3a;
+  transform: translateY(-1px);
+}
+
+.homepage-featured-categories__card-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+@media screen and (max-width: 990px) {
+  .homepage-featured-categories__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .homepage-featured-categories__inner {
+    padding: 0 20px;
+  }
+
+  .homepage-featured-categories__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .homepage-featured-categories__card {
+    min-height: 220px;
+  }
+
+  .homepage-featured-categories__card-title {
+    font-size: 18px;
+  }
+}
