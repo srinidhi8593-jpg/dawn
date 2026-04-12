@@ -1,34 +1,157 @@
 {{ 'homepage-hero.css' | asset_url | stylesheet_tag }}
 
 <section class="homepage-hero" id="homepage-hero">
-  <div class="homepage-hero__content">
-    <div class="homepage-hero__text">
-      <p class="homepage-hero__subtitle">GOING THE EXTRA DISTANCE</p>
-      <h1 class="homepage-hero__heading">Verified Quality<br>and Value</h1>
-      <p class="homepage-hero__desc">Save money with our refurbished electronics while getting top-quality devices you can trust.</p>
-      <a href="/collections/all" class="homepage-hero__btn" id="hero-shop-now">
-        Shop Now
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-    <div class="homepage-hero__image">
-      <img src="{{ 'hero-devices.png' | asset_url }}" alt="Refurbished laptops, tablets, phones and monitors" loading="eager" width="520" height="400">
-    </div>
+  <div class="homepage-hero__slider" id="hero-slider">
+    {%- for block in section.blocks -%}
+      <div class="homepage-hero__slide{% if forloop.first %} active{% endif %}" data-slide-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+          <img class="homepage-hero__slide-bg" src="{{ block.settings.image | image_url: width: 1920 }}" alt="{{ block.settings.heading | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" width="1920" height="420">
+        {%- endif -%}
+        <div class="homepage-hero__content">
+          <div class="homepage-hero__text">
+            {%- if block.settings.subheading != blank -%}
+              <p class="homepage-hero__subtitle">{{ block.settings.subheading }}</p>
+            {%- endif -%}
+            {%- if block.settings.heading != blank -%}
+              <h2 class="homepage-hero__heading">{{ block.settings.heading }}</h2>
+            {%- endif -%}
+            {%- if block.settings.description != blank -%}
+              <p class="homepage-hero__desc">{{ block.settings.description }}</p>
+            {%- endif -%}
+            {%- if block.settings.button_label != blank -%}
+              <a href="{{ block.settings.button_link | default: '/collections/all' }}" class="homepage-hero__btn" id="hero-cta-{{ forloop.index }}">
+                {{ block.settings.button_label | escape }}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            {%- endif -%}
+          </div>
+          {%- if block.settings.hero_image != blank -%}
+            <div class="homepage-hero__image">
+              <img src="{{ block.settings.hero_image | image_url: width: 1040 }}" alt="{{ block.settings.heading | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" width="520" height="400">
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+
+    {%- if section.blocks.size > 1 -%}
+      <div class="homepage-hero__arrows">
+        <button class="homepage-hero__arrow" id="hero-prev" aria-label="Previous slide">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="homepage-hero__arrow" id="hero-next" aria-label="Next slide">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="homepage-hero__controls">
+        {%- for block in section.blocks -%}
+          <button class="homepage-hero__dot{% if forloop.first %} active{% endif %}" data-dot-index="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.getElementById('hero-slider');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.homepage-hero__slide');
+    const dots = slider.querySelectorAll('.homepage-hero__dot');
+    const prevBtn = document.getElementById('hero-prev');
+    const nextBtn = document.getElementById('hero-next');
+    if (slides.length <= 1) return;
+    let current = 0;
+
+    function goToSlide(idx) {
+      slides[current].classList.remove('active');
+      if (dots[current]) dots[current].classList.remove('active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      if (dots[current]) dots[current].classList.add('active');
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function() { goToSlide(current - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function() { goToSlide(current + 1); });
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() { goToSlide(parseInt(this.dataset.dotIndex)); });
+    });
+
+    setInterval(function() { goToSlide(current + 1); }, 6000);
+  });
+</script>
+
 {% schema %}
 {
-  "name": "Homepage Hero",
+  "name": "A-Spot Carousel",
   "tag": "section",
   "class": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
   },
+  "max_blocks": 5,
   "settings": [],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "hero_image",
+          "label": "Foreground Image (right side)"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "GOING THE EXTRA DISTANCE"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Verified Quality and Value"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Save money with our refurbished electronics while getting top-quality devices you can trust."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Homepage Hero"
+      "name": "A-Spot Carousel",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "subheading": "GOING THE EXTRA DISTANCE",
+            "heading": "Verified Quality and Value",
+            "description": "Save money with our refurbished electronics while getting top-quality devices you can trust.",
+            "button_label": "Shop Now"
+          }
+        }
+      ]
     }
   ]
 }
