@@ -4,61 +4,189 @@
   <div class="homepage-refurbished__inner">
     <!-- Left Panel -->
     <div class="homepage-refurbished__left">
-      <p class="homepage-refurbished__label">Browse by condition</p>
+      {%- if section.settings.label != blank -%}
+        <p class="homepage-refurbished__label">{{ section.settings.label }}</p>
+      {%- endif -%}
       <div class="homepage-refurbished__tabs">
-        <button class="homepage-refurbished__tab active" id="tab-refurbished" onclick="this.classList.add('active');document.getElementById('tab-new').classList.remove('active');">Refurbished</button>
-        <button class="homepage-refurbished__tab" id="tab-new" onclick="this.classList.add('active');document.getElementById('tab-refurbished').classList.remove('active');">New</button>
+        <button class="homepage-refurbished__tab active" id="tab-option-1" data-tab="1" onclick="switchTab(this, 1)">{{ section.settings.tab_1_label | default: 'Refurbished' }}</button>
+        <button class="homepage-refurbished__tab" id="tab-option-2" data-tab="2" onclick="switchTab(this, 2)">{{ section.settings.tab_2_label | default: 'New' }}</button>
       </div>
 
-      <div class="homepage-refurbished__products">
-        <div class="homepage-refurbished__product-thumb">
-          <img src="{{ 'product-monitor-1.png' | asset_url }}" alt="Monitor" loading="lazy" width="74" height="74">
-        </div>
-        <div class="homepage-refurbished__product-thumb">
-          <img src="{{ 'product-laptop-1.png' | asset_url }}" alt="Laptop" loading="lazy" width="74" height="74">
-        </div>
-        <div class="homepage-refurbished__product-thumb">
-          <img src="{{ 'product-tablet-1.png' | asset_url }}" alt="Tablet" loading="lazy" width="74" height="74">
+      <!-- Tab 1 Content -->
+      <div class="homepage-refurbished__tab-content active" data-tab-content="1">
+        <div class="homepage-refurbished__products">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'tab_1_image' -%}
+              <div class="homepage-refurbished__product-thumb" {{ block.shopify_attributes }}>
+                {%- if block.settings.image != blank -%}
+                  <img src="{{ block.settings.image | image_url: width: 200 }}" alt="{{ block.settings.label | escape }}" loading="lazy" width="74" height="74">
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
         </div>
       </div>
 
-      <div class="homepage-refurbished__categories">
-        <a href="/collections/all" class="homepage-refurbished__category-tag">Laptops</a>
-        <a href="/collections/all" class="homepage-refurbished__category-tag">Desktops</a>
-        <a href="/collections/all" class="homepage-refurbished__category-tag">Monitors</a>
-        <a href="/collections/all" class="homepage-refurbished__category-tag">Tablets</a>
-        <a href="/collections/all" class="homepage-refurbished__category-tag">Accessories</a>
+      <!-- Tab 2 Content -->
+      <div class="homepage-refurbished__tab-content" data-tab-content="2">
+        <div class="homepage-refurbished__products">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'tab_2_image' -%}
+              <div class="homepage-refurbished__product-thumb" {{ block.shopify_attributes }}>
+                {%- if block.settings.image != blank -%}
+                  <img src="{{ block.settings.image | image_url: width: 200 }}" alt="{{ block.settings.label | escape }}" loading="lazy" width="74" height="74">
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
       </div>
 
-      <a href="/collections/all" class="homepage-refurbished__cta-btn" id="shop-collection-btn">
-        Shop Collection
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="homepage-refurbished__cta-btn" id="shop-collection-btn">
+          {{ section.settings.button_label }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      {%- endif -%}
     </div>
 
     <!-- Right Panel -->
     <div class="homepage-refurbished__right">
-      <img class="homepage-refurbished__right-image" src="{{ 'refurbished-device.png' | asset_url }}" alt="Upgrade without compromise" loading="lazy" width="700" height="400">
+      {%- if section.settings.right_image != blank -%}
+        <img class="homepage-refurbished__right-image" src="{{ section.settings.right_image | image_url: width: 1200 }}" alt="{{ section.settings.right_heading | escape }}" loading="lazy" width="700" height="400">
+      {%- endif -%}
       <div class="homepage-refurbished__right-overlay">
-        <h2 class="homepage-refurbished__right-heading">Upgrade Without<br>Compromise</h2>
-        <p class="homepage-refurbished__right-desc">Discover our carefully refurbished electronics that meet the highest standards. Every device is thoroughly tested, certified, and backed by our quality guarantee.</p>
+        {%- if section.settings.right_heading != blank -%}
+          <h2 class="homepage-refurbished__right-heading">{{ section.settings.right_heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.right_description != blank -%}
+          <p class="homepage-refurbished__right-desc">{{ section.settings.right_description }}</p>
+        {%- endif -%}
       </div>
     </div>
   </div>
 </section>
 
+<script>
+  function switchTab(btn, tabNum) {
+    const section = btn.closest('.homepage-refurbished');
+    section.querySelectorAll('.homepage-refurbished__tab').forEach(function(t) { t.classList.remove('active'); });
+    section.querySelectorAll('.homepage-refurbished__tab-content').forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    section.querySelector('[data-tab-content="' + tabNum + '"]').classList.add('active');
+  }
+</script>
+
 {% schema %}
 {
-  "name": "Refurbished Split",
+  "name": "Shop by Collection",
   "tag": "section",
   "class": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
   },
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section Label",
+      "default": "Browse by condition"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_label",
+      "label": "Tab 1 Label",
+      "default": "Refurbished"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_label",
+      "label": "Tab 2 Label",
+      "default": "New"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Shop Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Right Panel"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Panel Image"
+    },
+    {
+      "type": "text",
+      "id": "right_heading",
+      "label": "Right Panel Heading",
+      "default": "Upgrade Without Compromise"
+    },
+    {
+      "type": "textarea",
+      "id": "right_description",
+      "label": "Right Panel Description",
+      "default": "Discover our carefully refurbished electronics that meet the highest standards. Every device is thoroughly tested, certified, and backed by our quality guarantee."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab_1_image",
+      "name": "Tab 1 Product Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Image Label",
+          "default": "Product"
+        }
+      ]
+    },
+    {
+      "type": "tab_2_image",
+      "name": "Tab 2 Product Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Image Label",
+          "default": "Product"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Refurbished Split"
+      "name": "Shop by Collection",
+      "blocks": [
+        { "type": "tab_1_image", "settings": { "label": "Monitor" } },
+        { "type": "tab_1_image", "settings": { "label": "Laptop" } },
+        { "type": "tab_1_image", "settings": { "label": "Tablet" } },
+        { "type": "tab_2_image", "settings": { "label": "Desktop" } },
+        { "type": "tab_2_image", "settings": { "label": "Phone" } }
+      ]
     }
   ]
 }
