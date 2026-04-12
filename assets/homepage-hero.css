@@ -1,9 +1,31 @@
 .homepage-hero {
   position: relative;
+  overflow: hidden;
+}
+
+.homepage-hero__slider {
+  position: relative;
+}
+
+.homepage-hero__slide {
+  position: relative;
   min-height: 420px;
   background: linear-gradient(135deg, #1a8a4a 0%, #0d6e3a 30%, #0a4f2c 60%, #0b3d24 100%);
   overflow: hidden;
-  border-radius: 0 0 18px 18px;
+  display: none;
+}
+
+.homepage-hero__slide.active {
+  display: block;
+}
+
+.homepage-hero__slide-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
 }
 
 .homepage-hero__content {
@@ -97,8 +119,8 @@
   filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
 }
 
-/* Decorative gradient circles */
-.homepage-hero::before {
+/* Decorative elements */
+.homepage-hero__slide::before {
   content: '';
   position: absolute;
   top: -80px;
@@ -110,7 +132,7 @@
   z-index: 1;
 }
 
-.homepage-hero::after {
+.homepage-hero__slide::after {
   content: '';
   position: absolute;
   bottom: -50px;
@@ -122,12 +144,83 @@
   z-index: 1;
 }
 
+/* Carousel controls */
+.homepage-hero__controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.homepage-hero__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.homepage-hero__dot.active {
+  background: #ffffff;
+  width: 28px;
+  border-radius: 5px;
+}
+
+.homepage-hero__arrows {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+.homepage-hero__arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: all;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.homepage-hero__arrow:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+.homepage-hero__arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.homepage-hero__controls-hidden {
+  display: none;
+}
+
 @media screen and (max-width: 990px) {
   .homepage-hero__content {
     flex-direction: column-reverse;
     align-items: center;
     text-align: center;
-    padding: 40px 24px 40px;
+    padding: 40px 24px 50px;
     min-height: auto;
   }
 
