@@ -22,24 +22,25 @@
   min-width: 60px;
   opacity: 0.55;
   transition: opacity 0.3s ease;
-  cursor: default;
+  text-decoration: none;
+  color: #333;
 }
 
 .homepage-brand-logos__item:hover {
   opacity: 1;
 }
 
-.homepage-brand-logos__item svg,
 .homepage-brand-logos__item img {
-  height: 26px;
+  height: 30px;
   width: auto;
   object-fit: contain;
+  max-width: 100px;
 }
 
 .homepage-brand-logos__item span {
   font-size: 15px;
   font-weight: 700;
-  color: #333;
+  color: #555;
   letter-spacing: 0.5px;
   white-space: nowrap;
 }
@@ -48,11 +49,23 @@
   .homepage-brand-logos__inner {
     gap: 20px;
     padding: 0 20px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
-  .homepage-brand-logos__item svg,
+  .homepage-brand-logos__inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .homepage-brand-logos__item {
+    flex-shrink: 0;
+  }
+
   .homepage-brand-logos__item img {
-    height: 20px;
+    height: 22px;
   }
 
   .homepage-brand-logos__item span {
