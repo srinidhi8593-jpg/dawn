@@ -1,39 +1,167 @@
 {
   "sections": {
+    "homepage_categories": {
+      "type": "homepage-categories",
+      "blocks": {
+        "cat_1": { "type": "category", "settings": { "label": "Laptops" } },
+        "cat_2": { "type": "category", "settings": { "label": "Desktops" } },
+        "cat_3": { "type": "category", "settings": { "label": "Smartphones" } },
+        "cat_4": { "type": "category", "settings": { "label": "Tablets" } },
+        "cat_5": { "type": "category", "settings": { "label": "Gaming" } },
+        "cat_6": { "type": "category", "settings": { "label": "Servers/Networking" } },
+        "cat_7": { "type": "category", "settings": { "label": "Accessories" } },
+        "cat_8": { "type": "category", "settings": { "label": "Healthcare" } }
+      },
+      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4", "cat_5", "cat_6", "cat_7", "cat_8"],
+      "settings": {}
+    },
     "homepage_hero": {
       "type": "homepage-hero",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "subheading": "GOING THE EXTRA DISTANCE",
+            "heading": "Verified Quality and Value",
+            "description": "Save money with our refurbished electronics while getting top-quality devices you can trust.",
+            "button_label": "Shop Now"
+          }
+        }
+      },
+      "block_order": ["slide_1"],
       "settings": {}
     },
     "homepage_brand_logos": {
       "type": "homepage-brand-logos",
+      "blocks": {
+        "brand_1": { "type": "brand", "settings": { "name": "Apple" } },
+        "brand_2": { "type": "brand", "settings": { "name": "Dell" } },
+        "brand_3": { "type": "brand", "settings": { "name": "Google" } },
+        "brand_4": { "type": "brand", "settings": { "name": "Samsung" } },
+        "brand_5": { "type": "brand", "settings": { "name": "HP" } },
+        "brand_6": { "type": "brand", "settings": { "name": "Lenovo" } }
+      },
+      "block_order": ["brand_1", "brand_2", "brand_3", "brand_4", "brand_5", "brand_6"],
       "settings": {}
     },
     "homepage_bestsellers": {
       "type": "homepage-bestsellers",
-      "settings": {}
+      "settings": {
+        "heading": "Bestsellers",
+        "products_to_show": 8,
+        "show_view_all": true,
+        "button_label": "Shop Now"
+      }
     },
     "homepage_refurbished_split": {
       "type": "homepage-refurbished-split",
-      "settings": {}
+      "blocks": {
+        "tab1_img1": { "type": "tab_1_image", "settings": { "label": "Monitor" } },
+        "tab1_img2": { "type": "tab_1_image", "settings": { "label": "Laptop" } },
+        "tab1_img3": { "type": "tab_1_image", "settings": { "label": "Tablet" } },
+        "tab2_img1": { "type": "tab_2_image", "settings": { "label": "Desktop" } },
+        "tab2_img2": { "type": "tab_2_image", "settings": { "label": "Phone" } }
+      },
+      "block_order": ["tab1_img1", "tab1_img2", "tab1_img3", "tab2_img1", "tab2_img2"],
+      "settings": {
+        "label": "Browse by condition",
+        "tab_1_label": "Refurbished",
+        "tab_2_label": "New",
+        "button_label": "Shop Collection",
+        "right_heading": "Upgrade Without Compromise",
+        "right_description": "Discover our carefully refurbished electronics that meet the highest standards. Every device is thoroughly tested, certified, and backed by our quality guarantee."
+      }
     },
     "homepage_top_deals": {
       "type": "homepage-top-deals",
-      "settings": {}
+      "settings": {
+        "heading": "Top Deals",
+        "products_to_show": 6,
+        "promo_heading": "Get ready for a deal you can't miss",
+        "promo_button_label": "Shop Now"
+      }
     },
     "homepage_support": {
       "type": "homepage-support",
-      "settings": {}
+      "settings": {
+        "subtitle": "powered by industry-best certifications",
+        "heading": "Comprehensive Support, Optimized Outcomes",
+        "description": "Our team of certified experts provides end-to-end support, from selecting the right device to ongoing technical assistance. We're committed to delivering optimized outcomes for every customer.",
+        "button_label": "Learn More"
+      }
     },
     "homepage_trust_badges": {
       "type": "homepage-trust-badges",
+      "blocks": {
+        "cert_1": { "type": "certificate", "settings": { "label": "ISO 9001" } },
+        "cert_2": { "type": "certificate", "settings": { "label": "R2 Certified" } },
+        "cert_3": { "type": "certificate", "settings": { "label": "Microsoft Authorized" } },
+        "cert_4": { "type": "certificate", "settings": { "label": "e-Stewards" } },
+        "cert_5": { "type": "certificate", "settings": { "label": "NAID AAA" } }
+      },
+      "block_order": ["cert_1", "cert_2", "cert_3", "cert_4", "cert_5"],
+      "settings": {
+        "heading": "Certified. Trusted. Compliant.",
+        "description": "We adhere to the highest industry standards in refurbishment. Every device passes rigorous quality checks, data sanitization protocols, and functionality testing."
+      }
+    },
+    "homepage_featured_categories": {
+      "type": "homepage-featured-categories",
+      "blocks": {
+        "fcat_1": { "type": "category_banner", "settings": { "title": "Laptops", "subtitle": "Browse refurbished laptops", "button_label": "Shop Now" } },
+        "fcat_2": { "type": "category_banner", "settings": { "title": "Smartphones", "subtitle": "Quality smartphones at great prices", "button_label": "Shop Now" } },
+        "fcat_3": { "type": "category_banner", "settings": { "title": "Accessories", "subtitle": "Complete your setup", "button_label": "Shop Now" } }
+      },
+      "block_order": ["fcat_1", "fcat_2", "fcat_3"],
       "settings": {}
     },
-    "homepage_brand_marquee": {
-      "type": "homepage-brand-marquee",
-      "settings": {}
+    "homepage_testimonials": {
+      "type": "homepage-testimonials",
+      "blocks": {
+        "test_1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Phenomenal service and quality products. The refurbished laptop I purchased works like brand new. Highly recommend!",
+            "author_name": "John Smith",
+            "author_role": "IT Manager, Acme Corp"
+          }
+        },
+        "test_2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Outstanding value for money. Every device we've ordered has met our quality standards. Their support team is incredibly responsive.",
+            "author_name": "Sarah Johnson",
+            "author_role": "Procurement Director, TechStart Inc"
+          }
+        },
+        "test_3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "We've been sourcing refurbished equipment for 3 years now. Consistent quality, fast shipping, and excellent customer service every time.",
+            "author_name": "Michael Chen",
+            "author_role": "Operations Manager, GreenIT Solutions"
+          }
+        }
+      },
+      "block_order": ["test_1", "test_2", "test_3"],
+      "settings": {
+        "subtitle": "What Others Have to Say About Us"
+      }
+    },
+    "homepage_contact_support": {
+      "type": "homepage-contact-support",
+      "settings": {
+        "heading": "Get in Touch",
+        "subheading": "We're here to help with any questions or concerns",
+        "service_timing": "Mon-Fri: 8AM - 6PM EST",
+        "phone": "(800) 555-0199",
+        "email": "support@example.com",
+        "address": "123 Business Ave, Suite 100, City, ST 12345"
+      }
     }
   },
   "order": [
+    "homepage_categories",
     "homepage_hero",
     "homepage_brand_logos",
     "homepage_bestsellers",
@@ -41,6 +169,8 @@
     "homepage_top_deals",
     "homepage_support",
     "homepage_trust_badges",
-    "homepage_brand_marquee"
+    "homepage_featured_categories",
+    "homepage_testimonials",
+    "homepage_contact_support"
   ]
 }
