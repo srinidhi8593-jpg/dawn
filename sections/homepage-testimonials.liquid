@@ -1,0 +1,152 @@
+{{ 'homepage-testimonials.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-testimonials" id="homepage-testimonials">
+  <div class="homepage-testimonials__inner">
+    {%- if section.settings.subtitle != blank -%}
+      <p class="homepage-testimonials__subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+
+    <div class="homepage-testimonials__slider" id="testimonials-slider">
+      {%- for block in section.blocks -%}
+        <div class="homepage-testimonials__slide{% if forloop.first %} active{% endif %}" data-slide-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.quote != blank -%}
+            <p class="homepage-testimonials__quote">{{ block.settings.quote }}</p>
+          {%- endif -%}
+          <div class="homepage-testimonials__author">
+            <div class="homepage-testimonials__avatar">
+              {%- if block.settings.avatar != blank -%}
+                <img src="{{ block.settings.avatar | image_url: width: 96 }}" alt="{{ block.settings.author_name | escape }}" loading="lazy" width="48" height="48">
+              {%- else -%}
+                <div class="homepage-testimonials__avatar-placeholder">{{ block.settings.author_name | slice: 0 }}</div>
+              {%- endif -%}
+            </div>
+            <div class="homepage-testimonials__author-info">
+              {%- if block.settings.author_name != blank -%}
+                <p class="homepage-testimonials__author-name">{{ block.settings.author_name }}</p>
+              {%- endif -%}
+              {%- if block.settings.author_role != blank -%}
+                <p class="homepage-testimonials__author-role">{{ block.settings.author_role }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.blocks.size > 1 -%}
+      <div class="homepage-testimonials__dots">
+        {%- for block in section.blocks -%}
+          <button class="homepage-testimonials__dot{% if forloop.first %} active{% endif %}" data-dot-index="{{ forloop.index0 }}" aria-label="Go to testimonial {{ forloop.index }}"></button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.getElementById('testimonials-slider');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.homepage-testimonials__slide');
+    const dotsContainer = slider.closest('.homepage-testimonials');
+    const dots = dotsContainer ? dotsContainer.querySelectorAll('.homepage-testimonials__dot') : [];
+    if (slides.length <= 1) return;
+    let current = 0;
+
+    function goToSlide(idx) {
+      slides[current].classList.remove('active');
+      if (dots[current]) dots[current].classList.remove('active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      if (dots[current]) dots[current].classList.add('active');
+    }
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() { goToSlide(parseInt(this.dataset.dotIndex)); });
+    });
+
+    setInterval(function() { goToSlide(current + 1); }, 7000);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "What Others Have to Say About Us"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Phenomenal service and quality products. The refurbished laptop I purchased works like brand new. Highly recommend!"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name",
+          "default": "John Smith"
+        },
+        {
+          "type": "text",
+          "id": "author_role",
+          "label": "Author Role / Company",
+          "default": "IT Manager, Acme Corp"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Author Photo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Phenomenal service and quality products. The refurbished laptop I purchased works like brand new. Highly recommend!",
+            "author_name": "John Smith",
+            "author_role": "IT Manager, Acme Corp"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Outstanding value for money. Every device we've ordered has met our quality standards. Their support team is incredibly responsive.",
+            "author_name": "Sarah Johnson",
+            "author_role": "Procurement Director, TechStart Inc"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "We've been sourcing refurbished equipment for 3 years now. Consistent quality, fast shipping, and excellent customer service every time.",
+            "author_name": "Michael Chen",
+            "author_role": "Operations Manager, GreenIT Solutions"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
