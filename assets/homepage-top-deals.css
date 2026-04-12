@@ -9,29 +9,85 @@
   padding: 0 40px;
 }
 
+.homepage-top-deals__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
 .homepage-top-deals__title {
   font-size: 22px;
   font-weight: 700;
   color: #1a1a2e;
-  margin: 0 0 28px 0;
+  margin: 0;
 }
 
-.homepage-top-deals__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.homepage-top-deals__nav {
+  display: flex;
+  gap: 8px;
+}
+
+.homepage-top-deals__nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid #ddd;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+.homepage-top-deals__nav-btn:hover {
+  border-color: #0d6e3a;
+  color: #0d6e3a;
+  background: #f0f7f3;
+}
+
+.homepage-top-deals__nav-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.homepage-top-deals__carousel {
+  display: flex;
   gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+}
+
+.homepage-top-deals__carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .homepage-top-deals__promo-card {
+  flex: 0 0 280px;
+  min-width: 260px;
   background: linear-gradient(135deg, #4a3adb 0%, #6b5ce7 50%, #3b82f6 100%);
   border-radius: 14px;
   padding: 32px 28px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: 320px;
+  justify-content: flex-end;
+  min-height: 340px;
   position: relative;
   overflow: hidden;
+}
+
+.homepage-top-deals__promo-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
 }
 
 .homepage-top-deals__promo-card::before {
@@ -45,25 +101,17 @@
   border-radius: 50%;
 }
 
-.homepage-top-deals__promo-card::after {
-  content: '';
-  position: absolute;
-  bottom: -30px;
-  left: -20px;
-  width: 120px;
-  height: 120px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 50%;
+.homepage-top-deals__promo-content {
+  position: relative;
+  z-index: 2;
 }
 
 .homepage-top-deals__promo-heading {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 800;
   color: #ffffff;
   line-height: 1.3;
   margin: 0 0 16px 0;
-  position: relative;
-  z-index: 2;
 }
 
 .homepage-top-deals__promo-btn {
@@ -81,8 +129,6 @@
   cursor: pointer;
   transition: all 0.3s ease;
   width: fit-content;
-  position: relative;
-  z-index: 2;
 }
 
 .homepage-top-deals__promo-btn:hover {
@@ -90,6 +136,8 @@
 }
 
 .homepage-top-deals__deal-card {
+  flex: 0 0 calc(25% - 35px);
+  min-width: 220px;
   background: #ffffff;
   border-radius: 14px;
   border: 1px solid #eee;
@@ -140,10 +188,47 @@
   border-radius: 6px;
   background: #ff4444;
   color: #fff;
+  z-index: 2;
+}
+
+.homepage-top-deals__deal-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.homepage-top-deals__deal-tag--green {
+  background: #e6f7ed;
+  color: #0d6e3a;
+}
+
+.homepage-top-deals__deal-tag--blue {
+  background: #e6f0ff;
+  color: #1a56db;
+}
+
+.homepage-top-deals__deal-tag--red {
+  background: #ffe6e6;
+  color: #d32f2f;
 }
 
 .homepage-top-deals__deal-body {
   padding: 16px 18px 20px;
+}
+
+.homepage-top-deals__deal-category {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
 }
 
 .homepage-top-deals__deal-title {
@@ -178,8 +263,14 @@
 }
 
 @media screen and (max-width: 990px) {
-  .homepage-top-deals__grid {
-    grid-template-columns: repeat(2, 1fr);
+  .homepage-top-deals__deal-card {
+    flex: 0 0 calc(33% - 14px);
+    min-width: 200px;
+  }
+
+  .homepage-top-deals__promo-card {
+    flex: 0 0 240px;
+    min-width: 220px;
   }
 }
 
@@ -188,11 +279,12 @@
     padding: 0 20px;
   }
 
-  .homepage-top-deals__grid {
-    grid-template-columns: 1fr;
+  .homepage-top-deals__deal-card {
+    flex: 0 0 calc(50% - 10px);
+    min-width: 170px;
   }
 
   .homepage-top-deals__promo-heading {
-    font-size: 22px;
+    font-size: 20px;
   }
 }
