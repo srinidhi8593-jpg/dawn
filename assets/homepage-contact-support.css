@@ -1,0 +1,114 @@
+.homepage-contact {
+  padding: 56px 0;
+  background: #1a1a2e;
+  color: #ffffff;
+}
+
+.homepage-contact__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.homepage-contact__header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.homepage-contact__heading {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.homepage-contact__subheading {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+
+.homepage-contact__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.homepage-contact__card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 28px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.homepage-contact__card:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+.homepage-contact__card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(13,110,58,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: #5ee89c;
+}
+
+.homepage-contact__card-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.homepage-contact__card-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin: 0 0 8px 0;
+}
+
+.homepage-contact__card-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.homepage-contact__card-value a {
+  color: #5ee89c;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.homepage-contact__card-value a:hover {
+  color: #ffffff;
+}
+
+@media screen and (max-width: 990px) {
+  .homepage-contact__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .homepage-contact__inner {
+    padding: 0 20px;
+  }
+
+  .homepage-contact__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .homepage-contact__heading {
+    font-size: 20px;
+  }
+}
