@@ -1,0 +1,88 @@
+{{ 'homepage-featured-categories.css' | asset_url | stylesheet_tag }}
+
+<section class="homepage-featured-categories" id="homepage-featured-categories">
+  <div class="homepage-featured-categories__inner">
+    <div class="homepage-featured-categories__grid">
+      {%- for block in section.blocks -%}
+        <div class="homepage-featured-categories__card" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <img class="homepage-featured-categories__card-bg" src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="400" height="280">
+          {%- endif -%}
+          <div class="homepage-featured-categories__card-content">
+            {%- if block.settings.title != blank -%}
+              <h3 class="homepage-featured-categories__card-title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+            {%- if block.settings.subtitle != blank -%}
+              <p class="homepage-featured-categories__card-subtitle">{{ block.settings.subtitle }}</p>
+            {%- endif -%}
+            {%- if block.settings.button_label != blank -%}
+              <a href="{{ block.settings.button_link | default: '/collections/all' }}" class="homepage-featured-categories__card-btn" id="featured-cat-{{ forloop.index }}">
+                {{ block.settings.button_label }}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Categories",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 6,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category_banner",
+      "name": "Category Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "Category"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Browse our selection"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Collection Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Categories",
+      "blocks": [
+        { "type": "category_banner", "settings": { "title": "Laptops", "subtitle": "Browse refurbished laptops" } },
+        { "type": "category_banner", "settings": { "title": "Smartphones", "subtitle": "Quality smartphones at great prices" } },
+        { "type": "category_banner", "settings": { "title": "Accessories", "subtitle": "Complete your setup" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
