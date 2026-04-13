@@ -1,0 +1,208 @@
+/* ============================================================================
+   Hyper Theme Design System Global Overrides
+============================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Colors */
+  --color-hyper-black: #1a1a2e;
+  --color-hyper-text: #414156;
+  --color-hyper-muted: #88889aa;
+  --color-hyper-bg: #f9fafb;
+  --color-hyper-border: #e8e8e8;
+  --color-hyper-red: #c62828;
+  --color-hyper-green: #2e7d32;
+  --color-hyper-accent: #0d6e3a;
+
+  /* Typography */
+  --font-body-family: 'Inter', sans-serif !important;
+  --font-heading-family: 'Inter', sans-serif !important;
+  --font-heading-weight: 700 !important;
+  
+  /* Buttons */
+  --buttons-radius: 999px !important; /* Pill shape */
+  
+  /* Inputs */
+  --inputs-radius: 999px !important;
+  
+  /* Badges */
+  --badge-corner-radius: 999px !important;
+  
+  /* Cards */
+  --card-radius: 12px !important;
+  
+  /* Sections */
+  --page-width: 1400px;
+}
+
+/* ============================================================================
+   Typography Overrides
+============================================================================== */
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-body-family);
+  letter-spacing: -0.02em;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  color: var(--color-hyper-black);
+  font-weight: var(--font-heading-weight);
+}
+
+/* ============================================================================
+   Button Overrides
+============================================================================== */
+.button, 
+.btn,
+.shopify-payment-button__button,
+button.product-form__submit {
+  border-radius: var(--buttons-radius);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  transition: all 0.3s ease;
+}
+
+.button--primary {
+  background-color: var(--color-hyper-black);
+  color: #fff;
+  border: none;
+}
+
+.button--primary:hover {
+  background-color: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.button--secondary {
+  background-color: #fff;
+  color: var(--color-hyper-black);
+  border: 1px solid var(--color-hyper-border);
+}
+
+.button--secondary:hover {
+  border-color: var(--color-hyper-black);
+  background-color: #f8f9fa;
+}
+
+/* ============================================================================
+   Card Overrides (Product & Article)
+============================================================================== */
+.card-wrapper {
+  background: transparent;
+}
+
+.card {
+  border-radius: var(--card-radius);
+  border: none;
+  background: transparent;
+  overflow: hidden;
+}
+
+.card__media, .card__inner {
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+.card__media img {
+  border-radius: var(--card-radius);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card-wrapper:hover .card__media img {
+  transform: scale(1.05);
+}
+
+/* Product Card specific */
+.card-information {
+  padding-top: 1.2rem;
+  text-align: left;
+}
+
+.card__heading {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-hyper-black);
+  margin-bottom: 0.4rem;
+}
+
+.card-information > .price {
+  color: var(--color-hyper-text);
+  font-weight: 500;
+}
+
+.price--on-sale .price-item--sale {
+  color: var(--color-hyper-red);
+  font-weight: 700;
+}
+
+/* ============================================================================
+   Form Inputs Overrides
+============================================================================== */
+.field__input, 
+.select__select, 
+.customer .field input, 
+.customer select {
+  border-radius: var(--inputs-radius);
+  border: 1px solid var(--color-hyper-border);
+  background-color: #fff;
+  padding: 1.5rem 2rem;
+}
+
+.field__input:focus, 
+.select__select:focus {
+  border-color: var(--color-hyper-black);
+  box-shadow: 0 0 0 1px var(--color-hyper-black);
+}
+
+.field__label {
+  left: 2rem;
+}
+
+/* ============================================================================
+   Badges Overrides
+============================================================================== */
+.badge {
+  border-radius: var(--badge-corner-radius);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.4rem 1.2rem;
+}
+
+.badge--bottom-left {
+  bottom: 1rem;
+  left: 1rem;
+}
+
+/* ============================================================================
+   Announcement Bar Overrides
+============================================================================== */
+.announcement-bar {
+  background-color: #1a1a2e; /* Dark navy */
+  color: #fff;
+  padding: 8px 0;
+}
+
+.announcement-bar__message {
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================================
+   Spacing & Layout Overrides
+============================================================================== */
+.section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media screen and (min-width: 750px) {
+  .section {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
