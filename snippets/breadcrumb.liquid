@@ -1,0 +1,79 @@
+<nav class="pdp-breadcrumb" aria-label="Breadcrumb">
+  <ol class="pdp-breadcrumb__list">
+    <li class="pdp-breadcrumb__item">
+      <a href="/" class="pdp-breadcrumb__link">Home</a>
+      <span class="pdp-breadcrumb__separator" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </span>
+    </li>
+    {%- if product.collections.size > 0 -%}
+      {%- assign product_collection = product.collections.first -%}
+      <li class="pdp-breadcrumb__item">
+        <a href="{{ product_collection.url }}" class="pdp-breadcrumb__link">{{ product_collection.title }}</a>
+        <span class="pdp-breadcrumb__separator" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </span>
+      </li>
+    {%- elsif product.type != blank -%}
+      <li class="pdp-breadcrumb__item">
+        <span class="pdp-breadcrumb__text">{{ product.type }}</span>
+        <span class="pdp-breadcrumb__separator" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </span>
+      </li>
+    {%- endif -%}
+    <li class="pdp-breadcrumb__item pdp-breadcrumb__item--current" aria-current="page">
+      <span class="pdp-breadcrumb__text">{{ product.title | truncate: 50 }}</span>
+    </li>
+  </ol>
+</nav>
+
+<style>
+  .pdp-breadcrumb {
+    margin-bottom: 8px;
+  }
+
+  .pdp-breadcrumb__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 4px;
+  }
+
+  .pdp-breadcrumb__item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .pdp-breadcrumb__link {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .pdp-breadcrumb__link:hover {
+    color: #0d6e3a;
+    text-decoration: underline;
+  }
+
+  .pdp-breadcrumb__text {
+    color: #999;
+  }
+
+  .pdp-breadcrumb__item--current .pdp-breadcrumb__text {
+    color: #333;
+    font-weight: 500;
+  }
+
+  .pdp-breadcrumb__separator {
+    color: #ccc;
+    display: flex;
+    align-items: center;
+  }
+</style>
